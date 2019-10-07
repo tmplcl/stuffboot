@@ -29,5 +29,9 @@ build/
 ### VS Code ###
 .vscode/
 *.jar
-.mvn/wrapper/maven-wrapper.properties
 .mvn/wrapper/MavenWrapperDownloader.java
+
+
+### CUSTOM ###
+!.mvn/wrapper/maven-wrapper.properties
+!.mvn/wrapper/maven-wrapper.jar
