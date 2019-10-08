@@ -1,4 +1,14 @@
 language: java
 
+services:
+  - docker
+  
 before_install:
   - chmod +x mvnw
+  
+deploy:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin >/dev/null 2>&1
+  - docker build -t org.tmplcl/stuffboot .
+  - docker tag org.tmplcl/stuffboot tmplcl/stuffboot
+  - docker push tmplcl/stuffboot
+  
