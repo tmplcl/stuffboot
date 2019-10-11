@@ -1,4 +1,7 @@
 FROM adoptopenjdk/openjdk11:latest
-RUN mkdir /opt/app
-COPY target/stuffboot.jar /opt/app
-CMD ["java", "-jar", "/opt/app/stuffboot.jar"]
+VOLUME /tmp
+ARG DEPENDENCY=target/dependency
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","org.tmplcl.stuffboot.StuffbootApplication"]
